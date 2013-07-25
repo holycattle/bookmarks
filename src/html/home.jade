@@ -1,0 +1,177 @@
+//first row
+#first-row
+  .container-fluid
+    .row-fluid
+      .span5#sample-food
+        //sample food image
+        img(src="lib/img/scrambled_eggs.jpg", alt="Scrambled Eggs", width=622, height=370)
+      .span7
+        //emphasize the brand name and the description
+        .hero-unit.brand
+          h1 Example Cafe
+          h3 A community cafe serving home cooked, locally sourced, organic food
+          p.justify-text.
+            With stunning views of the ocean, Example Cafe offers the perfect environment to unwind and recharge the batteries.
+            Our menu offers a wide range of breakfasts, brunches, and lunches, including a range of vegetarian options.
+            Whether you sip on a fresh, hot coffee, or a cooling smoothie, you never need to freel rushed. Relax with friends or just watch the world go by.
+          p
+            a(ng-click="scrollToHash('second-row')", ng-controller="NavController").btn.btn-primary.btn-large View our menu!
+
+#second-row
+  .container-fluid.contact-section
+    h1 Menu
+    .row-fluid
+      .div4.well
+        //starters
+      
+        h3 Starters
+        ul
+          li
+            | Chestnut and Mushroom Goujons (v)
+          li
+            | Goat Cheese Salad (v)
+          li
+            | Honey Soy Chicken Kebabs (v)
+          li
+            | Seafood Salad (v)
+
+      .div4.well
+        //main courses
+        h3 Main courses
+        ul
+          li
+            | Spinach and Ricotta Roulade (v)
+          li
+            | Beef Tournados with Mustard and Dill Sauce (v)
+          li
+            | Roast Chicken Salad (v)
+          li
+            | Icelandic Cod with Parsley Sauce (v)
+          li
+            | Mushroom Wellington (v)
+
+      .div4.well
+        //desserts
+        h3 Desserts
+        ul
+          li
+            | Lemon Sorbet (v)
+          li
+            | Chocolate Mud Pie (v)
+          li
+            | Pecan Pies (v)
+          li
+            | Selection of Fine Cheeses from Around the World (v)
+
+      p.note
+       b *Menu items denoted with a v are vegetarian-friendly. :D
+
+//second row
+#third-row
+  .container-fluid.contact-section
+    h1 Get in touch with us!
+    .row-fluid.contact-body
+      .span5
+        .well
+          p
+            h4 Address: 12 Sea View, Newquay, Cornwall, UK
+          | <iframe width="425" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?q=newquay&amp;ie=UTF8&amp;hq=&amp;hnear=Newquay,+Cornwall,+United+Kingdom&amp;t=m&amp;z=13&amp;ll=50.415497,-5.073719&amp;output=embed"></iframe><br /><small><a href="https://maps.google.com/maps?q=newquay&amp;ie=UTF8&amp;hq=&amp;hnear=Newquay,+Cornwall,+United+Kingdom&amp;t=m&amp;z=13&amp;ll=50.415497,-5.073719&amp;source=embed" style="color:#0000FF;text-align:left">View Larger Map</a></small>
+      .span7.schedule
+        .well
+          h2 Opening hours
+          
+          table(border=1)
+            
+            //header rows indicating day
+            tr
+              th
+              th Monday
+              th Tuesday
+              th Wednesday
+              th Thursday
+              th Friday
+              th Saturday
+              th Sunday
+            
+            //Breakfast scheds
+            tr
+              th Breakfast
+              //Monday to Sunday, in that order
+              td 7:00am - 10:00am
+              td 7:00am - 10:00am
+              td 7:00am - 10:00am
+              td 7:00am - 10:00am
+              td 7:00am - 11:00am
+              td 8:00am - 11:30am
+              td 8:00am - 11:30am
+
+            //Lunch scheds
+            tr
+              th Lunch
+              //Monday to Sunday, in that order
+              td 11:30am - 2:30pm
+              td 11:30am - 2:30pm
+              td 11:30am - 2:30pm
+              td 11:30am - 2:30pm
+              td 11:30am - 2:30pm
+              td 11:30am - 3:30pm
+              td 11:30am - 3:30pm
+
+        .well
+          h2 Contact us!
+          p
+            h4
+              | Email us at  
+              a(href="mailto:info@examplecafe.net") info@examplecafe.net
+          p
+            h4
+              | Or use our 
+              a(href="#", ng-click="openContactModal()") contact form
+
+//contact form modal
+.contact-modal(modal="isOpen", close="closeContactModal()", options="opt")
+  .modal-header
+    h3 Contact Us
+      form.form-horizontal
+    
+        .modal-body
+          //use Bootstrap's horizontal form layout
+        
+          fieldset
+            legend Your message:
+            //a control-group is a group of different input types and their labels
+            .control-group
+              //control-label is a label for an input type
+              label.control-label(for="recepient") To
+              //the input types go in the controls class
+              .controls
+                //make sure to specify the 'for' in the label tag and the id in the input tag to properly associate the labels with their corresponding input object
+                input(type="text", id="recepient", size=20, maxlength=250)
+
+            .control-group
+              label.control-label(for="sender") Your email
+              .controls
+                input(type="text", id="sender", size=20, maxlength=250)
+
+            .control-group
+              label.control-label(for="message") Message
+              .controls
+                textarea(cols=50, rows=10, id="message")
+
+          fieldset
+            legend How you found us:
+            .control-group
+              label.control-label(for="referrer") How did you hear of us
+              .controls
+                input(type="text", id="referrer", size=20, maxlength=250)
+
+            .control-group
+              label.control-label(for="newsletter") Newsletter
+              .controls
+                label.checkbox
+                  input(type="checkbox", id="newsletter")
+                  | Ensure this box is checked if you would like to receive email updates
+
+        .modal-footer
+          button(type="submit").btn.btn-primary Send message
+
