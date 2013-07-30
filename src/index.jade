@@ -1,23 +1,24 @@
 html(ng-app="Momentum")
   head
-    title Sample Cafe
+    title Bookmarks
 
     // import the bootstrap stylesheets
     link(href='lib/flatstrap/css/bootstrap.css', rel='stylesheet')
+    link(rel='stylesheet', href='font-awesome/css/font-awesome.css')
     link(href='lib/angular-ui/angular-ui.css', rel='stylesheet')
-    // import the css styles we created in the css/ folder
     link(href='css/styles.css', rel='stylesheet')
+    // import the css styles we created in the css/ folder
 
   body
     .navbar.navbar-fixed-top(ng-controller="NavController")
-      .navbar-inner
+      .navbar-bm.navbar-inner
         //buttons to navigate the main page
-        a.brand(ng-click="scrollToHash('first-row')") Sample Cafe
+        a.brand(ng-click="scrollToHash('first-row')", href='') Bookmarks
         ul.nav(role="navigation")
           li
-            a(ng-click="scrollToHash('second-row')") Menu
+            a(ng-click="scrollToHash('second-row')", href='') Menu
           li
-            a(ng-click="scrollToHash('third-row')") Contact us!
+            a(ng-click="scrollToHash('third-row')", href='') Contact us!
         //cookbook dropdown nav
         ul.nav.pull-right
           li.dropdown
