@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 lib-cov
 *.seed
 *.log
@@ -12,3 +13,7 @@ logs
 results
 
 npm-debug.log
+
+.DS_STORE
+build/
+node_modules/
