@@ -1,5 +1,9 @@
 main_color = #009ec5
+bg_color = #f8f2ed
 secondary_color = #fff
+
+body
+  background-color bg_color
 
 .all-content
   height 100px
@@ -20,19 +24,25 @@ secondary_color = #fff
     color main_color
     font-size 30px
     padding-left 30px
+
+  .brand:hover, .brand:focus, .brand:active
+    color secondary_color
+    background-color main_color
+    border-color main_color
+
   a
     color main_color
     font-size 20px
   
   .main-nav
     padding-top 5px
+    a
   .auth-nav
     padding-top 5px
 
 .btn-bm
   color main_color
   background-color secondary_color
-  border-color #e5e5e5
 
 .btn-bm:hover, .btn-bm:focus, .btn-bm:active
   color secondary_color
@@ -60,6 +70,7 @@ secondary_color = #fff
 /*! add top padding to the main body */
 .main-body
   padding-top 75px
+  
 
 /*! some padding */
 #home
