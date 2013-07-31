@@ -1,0 +1,50 @@
+#manage
+  .container
+    .pull-right
+      a.btn.btn-primary.add-btn(ng-click='openModal()')
+        i.icon-plus
+        |  Add
+    <br><br>
+    div(ng-repeat='(key, value) in linkDatabase')
+      .well.link-well
+        b.title {{value['title']}}
+        <br><br>
+        a(href='{{key}}', target='_blank') {{key}}
+        <br><br>
+        b Notes:
+        p {{value['notes']}}
+        b Tags: 
+        div(ng-repeat="t in value['topics']") {{t}}
+
+//signup form modal
+.contact-modal(modal="isOpen", close="closeModal()", options="opt")
+  .modal-header
+    form.form-horizontal(ng-submit='add()')
+      .modal-body
+        //use Bootstrap's horizontal form layout
+        fieldset
+          legend Add Bookmark
+          //a control-group is a group of different input types and their labels
+          .control-group
+            //control-label is a label for an input type
+            label.control-label(for="title") Title
+            //the input types go in the controls class
+            .controls
+              //make sure to specify the 'for' in the label tag and the id in the input tag to properly associate the labels with their corresponding input object
+              input.text-input(type="text", ng-model='data.title', id="title", size=40, maxlength=350)
+
+          .control-group
+            //control-label is a label for an input type
+            label.control-label(for="link") Link
+            //the input types go in the controls class
+            .controls
+              //make sure to specify the 'for' in the label tag and the id in the input tag to properly associate the labels with their corresponding input object
+              input.text-input(type="text", ng-model='data.link', id="link", maxlength=350)
+
+          .control-group
+            label.control-label(for="notes") Description
+            .controls
+              textarea(ng-model='data.notes', id="notes", size=25, maxlength=200)
+
+      .modal-footer
+        button(type="submit").btn.btn-primary Add Bookmark
