@@ -33,7 +33,9 @@ html(ng-app="Momentum")
             .btn.btn-bm.login-button(ng-show='currentUser')
               i.icon-user
               |  Hello, {{currentUser.username}}!
-
+            .btn.btn-bm.login-button(ng-show='currentUser', ng-click='logout()', ng-controller='AuthController')
+              i.icon-user
+              |  Logout
       //signup form modal
       .contact-modal(ng-controller='AuthController', modal="loginIsOpen", close="closeLoginModal()", options="opt", ng-cloak)
         i.close.icon-remove-sign.icon-2x.pull-right(ng-click='closeLoginModal()')

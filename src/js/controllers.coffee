@@ -129,9 +129,10 @@ momentum.controller "AuthController", ['$scope', '$rootScope', '$http', '$locati
       $log.log 'sucker'
       $scope.loginError = {message: 'Invalid login credentials.'}
 
-    
-    
-
+  $scope.logout = ->
+    $rootScope.currentUser = null
+    $location.path '/'
+    $rootScope.$apply()
 ]
 
 momentum.controller "NavController", ['$scope', '$http', '$location', '$log', ($scope, $http, $location, $log) ->
