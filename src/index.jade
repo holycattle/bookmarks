@@ -4,43 +4,75 @@ html(ng-app="Momentum")
 
     // import the bootstrap stylesheets
     link(href='lib/flatstrap/css/bootstrap.css', rel='stylesheet')
-    link(rel='stylesheet', href='font-awesome/css/font-awesome.css')
+    link(rel='stylesheet', href='lib/font-awesome/css/font-awesome.css')
     link(href='lib/angular-ui/angular-ui.css', rel='stylesheet')
+    link(href='lib/select2/select2.css', rel='stylesheet')
     link(href='css/styles.css', rel='stylesheet')
     // import the css styles we created in the css/ folder
 
   body
+
     .navbar.navbar-fixed-top(ng-controller="NavController")
       .navbar-bm.navbar-inner
         //buttons to navigate the main page
-        a.brand(ng-click="scrollToHash('first-row')", href='') Bookmarks
-        ul.nav(role="navigation")
+        a.brand(href='#/')
+          i.icon-bookmark
+          |  Bookmarks
+        ul.nav.main-nav(role="navigation")
           li
-            a(ng-click="scrollToHash('second-row')", href='') Menu
+            a(href='#/manage') Manage
+        //login dropdown nav
+        ul.nav.pull-right.auth-nav
           li
-            a(ng-click="scrollToHash('third-row')", href='') Contact us!
-        //cookbook dropdown nav
-        ul.nav.pull-right
-          li.dropdown
-            a(href="#", id="drop2", role="button", data-toggle="dropdown", style="padding-right: 25px").dropdown-toggle.cookbook-button Cookbook
-              b.caret
-            ul.dropdown-menu(role="menu", aria-labelledby="drop2")
-              li(role="presentation")
-                a(href="#/recipes", tabindex="-1", role="menuitem") Recipes
-              li(role="presentation")
-                a(href="#/lessons", tabindex="-1", role="menuitem") Lessons
+            .btn.btn-bm.login-button(ng-click='signUpNow()', ng-hide='currentUser', ng-controller='AuthController')
+              i.icon-chevron-sign-up
+              |  Sign-up
+            .btn.btn-bm.login-button(ng-hide='currentUser', ng-click='openLoginModal()')
+              i.icon-signin
+              |  Login
+            .btn.btn-bm.login-button(ng-show='currentUser') Hello, {{currentUser.username}}!
+
+      //signup form modal
+      .contact-modal(ng-controller='AuthController', modal="loginIsOpen", close="closeLoginModal()", options="opt", ng-cloak)
+        i.close.icon-remove-sign.icon-2x.pull-right(ng-click='closeLoginModal()')
+        form.form-horizontal(ng-submit='login()')
+          .modal-body
+
+            //use Bootstrap's horizontal form layout
+            .alert.alert-error(ng-show="loginError")
+              p {{loginError.message}}
+            fieldset
+              legend Login
+              //a control-group is a group of different input types and their labels
+              .control-group
+                //control-label is a label for an input type
+                label.control-label(for="username") Username
+                //the input types go in the controls class
+                .controls
+                  //make sure to specify the 'for' in the label tag and the id in the input tag to properly associate the labels with their corresponding input object
+                  input.text-input(type="text", ng-model='loginData.username', id="username", maxlength=25)
+
+              .control-group
+                label.control-label(for="password") Password
+                .controls
+                  input.text-input(type="password", ng-model='loginData.password', id="password", maxlength=25)
+
+          .modal-footer
+            button(type="submit").btn.btn-primary Login
+
     //add padding in between nav-bar and main body
     .main-body
       div(ng-view)
 
 
-  // import the jquery, bootstrap, and Angular JS libraries
-  script(src='lib/jquery-1.9.1.js', type='text/javascript') 
-
+  // import the jquery, bootstrap, underscore, and Angular JS libraries
+  script(src='lib/underscore-min.js', type='text/javascript')
+  script(src='lib/jquery-1.9.1.js', type='text/javascript')
   script(src='lib/flatstrap/js/bootstrap.js', type='text/javascript')
   script(src='lib/angular-1.1.5/angular.js', type='text/javascript')
+  script(src='lib/select2/select2.js', type='text/javascript')
   script(src='lib/angular-ui/angular-ui.js', type='text/javascript')
-  script(src="http://angular-ui.github.com/bootstrap/ui-bootstrap-tpls-0.2.0.js", type='text/javascript')
+  script(src="lib/ui-bootstrap-tpls-0.2.0.js", type='text/javascript')
   script(src='lib/jquery_scroll.js', type='text/javascript')
   // import the javascript code in the js/ folder
   script(src='js/controllers.js', type='text/javascript')
