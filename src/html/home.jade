@@ -1,59 +1,37 @@
 //first row
-#first-row
+#home
   .container
     //emphasize the brand name and the description
     .header
       h1 Bookmarks
       p.lead.
+        Your personal library for online resources.
+        <br>
         Organize your favorite online reading materials, find more interesting stuff, and save time!
       p
-        a(ng-click="scrollToHash('second-row')", ng-controller="NavController").btn.btn-primary.btn-bm Get started now
+        a(ng-click="openSignupModal()").btn.btn-primary.btn-bm Get started now
 
+//signup form modal
+.contact-modal(ng-controller='AuthController', modal="signupIsOpen", close="closeSignupModal()", options="opt")
+  i.close.icon-remove-sign.icon-2x.pull-right(ng-click='closeSignupModal()')
+  form.form-horizontal(ng-submit='signup()')
+    .modal-body
+      //use Bootstrap's horizontal form layout
+      fieldset
+        legend Sign-up
+        //a control-group is a group of different input types and their labels
+        .control-group
+          //control-label is a label for an input type
+          label.control-label(for="username") Username
+          //the input types go in the controls class
+          .controls
+            //make sure to specify the 'for' in the label tag and the id in the input tag to properly associate the labels with their corresponding input object
+            input.text-input(type="text", ng-model='signupData.username', id="username", size=40, maxlength=25)
 
-//contact form modal
-.contact-modal(modal="isOpen", close="closeContactModal()", options="opt")
-  .modal-header
-    h3 Contact Us
-      form.form-horizontal
-    
-        .modal-body
-          //use Bootstrap's horizontal form layout
-        
-          fieldset
-            legend Your message:
-            //a control-group is a group of different input types and their labels
-            .control-group
-              //control-label is a label for an input type
-              label.control-label(for="recepient") To
-              //the input types go in the controls class
-              .controls
-                //make sure to specify the 'for' in the label tag and the id in the input tag to properly associate the labels with their corresponding input object
-                input(type="text", id="recepient", size=20, maxlength=250)
+        .control-group
+          label.control-label(for="password") Password
+          .controls
+            input.text-input(type="password", ng-model='signupData.password', id="password", size=40, maxlength=25)
 
-            .control-group
-              label.control-label(for="sender") Your email
-              .controls
-                input(type="text", id="sender", size=20, maxlength=250)
-
-            .control-group
-              label.control-label(for="message") Message
-              .controls
-                textarea(cols=50, rows=10, id="message")
-
-          fieldset
-            legend How you found us:
-            .control-group
-              label.control-label(for="referrer") How did you hear of us
-              .controls
-                input(type="text", id="referrer", size=20, maxlength=250)
-
-            .control-group
-              label.control-label(for="newsletter") Newsletter
-              .controls
-                label.checkbox
-                  input(type="checkbox", id="newsletter")
-                  | Ensure this box is checked if you would like to receive email updates
-
-        .modal-footer
-          button(type="submit").btn.btn-primary Send message
-
+    .modal-footer
+      button(type="submit").btn.btn-primary Sign-up
