@@ -30,6 +30,14 @@ momentum.controller "HomeController", ['$scope', '$rootScope', '$http', '$locati
 
     $rootScope.topics = ['programming', 'educational', 'technology', 'manga', 'anime', 'fiction', 'Japanese', 'culture', 'lifestyle', 'language']
 
+  $rootScope.getSuggestedReading = ->
+    'http://sitr.us/2011/08/26/cookies-are-bad-for-you.html':
+      title: 'Cookies are Bad for You'
+    'http://gameprogrammingpatterns.com/':
+      title: 'Video Game Programming Patterns'
+    'http://www.batoto.net/comic/_/comics/hataraku-maousama-r6241':
+      title: 'Hataraku Maou-sama! manga'
+
   if $scope.currentUser?
     $location.path '/manage'
     

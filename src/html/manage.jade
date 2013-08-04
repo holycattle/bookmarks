@@ -1,20 +1,27 @@
 #manage
-  .container
-    .pull-right
-      a.btn.btn-primary.add-btn(ng-click='openModal()')
-        i.icon-plus
-        |  Add
-    <br><br>
-    div(ng-repeat='(key, value) in linkDatabase')
-      .well.link-well
-        b.title {{value['title']}}
-        <br><br>
-        a(href='{{key}}', target='_blank') {{key}}
-        <br><br>
-        b Notes:
-        p {{value['notes']}}
-        b Tags: 
-        div(ng-repeat="t in value['topics']") {{t}}
+  .row-fluid(style='width: 80%; padding-right: 10px; padding-left:30px;')
+    .container.span3
+      .well
+        h4 Some recommended reading for you...
+        ul
+          li(ng-repeat='(key, value) in getSuggestedReading()')
+            a(href='{{key}}', target='_blank') {{value['title']}}
+    .container.span9
+      .pull-right
+        a.btn.btn-primary.add-btn(ng-click='openModal()')
+          i.icon-plus
+          |  Add
+      <br><br>
+      div(ng-repeat='(key, value) in linkDatabase').link-well
+        .well
+          b.title {{value['title']}}
+          <br><br>
+          a(href='{{key}}', target='_blank') {{key}}
+          <br><br>
+          b Notes:
+          p {{value['notes']}}
+          b Tags: 
+          div(ng-repeat="t in value['topics']") {{t}}
 
 //signup form modal
 .contact-modal(modal="isOpen", close="closeModal()", options="opt")
